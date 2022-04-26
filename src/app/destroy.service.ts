@@ -1,17 +1,13 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 /**
  * Observable abstraction over ngOnDestroy to use with takeUntil
  */
 @Injectable()
-export class DestroyService extends ReplaySubject<void> implements OnDestroy {
-  constructor() {
-    super(1);
-  }
-
+export class DestroyService extends Subject<void> implements OnDestroy {
   ngOnDestroy() {
-    this.next();
-    this.complete();
+      this.next();
+      this.complete();
   }
 }
